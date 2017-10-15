@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Product 
 {
     @Id
+    @GeneratedValue
     int productId;
      
     String productName,productDesc;

@@ -4,17 +4,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.everstylish.model.Product;
 
+import com.everstylish.dao.ProductDAO;
 @Repository("productDao")
 	public class ProductDAOImpl implements ProductDAO
 	{
 		@Autowired
 	    SessionFactory sessionFactory;
 
+		 @Transactional
 		public boolean addProduct(Product product) {
 			// TODO Auto-generated method stub
 			 try
@@ -28,10 +32,15 @@ import com.everstylish.model.Product;
 		      }
 		      
 		}
-
-		public List<Product> retrieveProduct() {
+        public List<Product> retrieveProducts() {
 			// TODO Auto-generated method stub
-			return null;
+        	Session session=sessionFactory.openSession();
+        	@SuppressWarnings("rawtypes")
+			Query query = session.createQuery("from Product");
+        	@SuppressWarnings("unchecked")
+			List<Product> listProducts = query.list();
+        	session.close();
+			return listProducts;
 		}
 
 		public boolean deleteProduct(Product product) {

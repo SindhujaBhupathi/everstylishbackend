@@ -1,4 +1,13 @@
-com\everstylish\model\User.class
+com\everstylish\dao\ProductDAO.class
 com\everstylish\dao\UserDAO.class
-com\everstylish\dao\UserDAOImpl.class
+com\everstylish\dao\CategoryDAO.class
+com\everstylish\model\Category.class
+com\everstylish\model\Product.class
 com\everstylish\config\DataBaseConfig.class
+com\everstylish\model\Supplier.class
+com\everstylish\model\User.class
+com\everstylish\dao\UserDAOImpl.class
+com\everstylish\dao\SupplierDAO.class
+com\everstylish\dao\CategoryDAOImpl.class
+com\everstylish\dao\ProductDAOImpl.class
+com\everstylish\dao\SupplierDAOImpl.class

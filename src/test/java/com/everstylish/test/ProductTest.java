@@ -12,14 +12,17 @@ import com.everstylish.dao.ProductDAO;
 import com.everstylish.model.Product;
 public class ProductTest {
 	private static ProductDAO productDAO;
+	
 	@BeforeClass
 	public static void initialize()
 	{
-		AnnotationConfigApplicationContext ConfigAppLnContext=new AnnotationConfigApplicationContext();
-		ConfigAppLnContext.scan("com.");
-		ConfigAppLnContext.refresh();
+		
+		@SuppressWarnings("resource")
+		AnnotationConfigApplicationContext configAppinContext=new AnnotationConfigApplicationContext();
+		configAppinContext.scan("com.");
+		configAppinContext.refresh();
 		//SessionFactory sessionFactory=(Conf.getBean(requiredType, args))
-		productDAO=(ProductDAO)ConfigAppLnContext.getBean("productDAO");
+		productDAO=(ProductDAO)configAppinContext.getBean("productDAO");
 
 	}
 	@Transactional
