@@ -15,18 +15,24 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.everstylish.dao.CategoryDAO;
+import com.everstylish.dao.CategoryDAOImpl;
+import com.everstylish.dao.ProductDAO;
+import com.everstylish.dao.ProductDAOImpl;
+import com.everstylish.dao.SupplierDAO;
+import com.everstylish.dao.SupplierDAOImpl;
 import com.everstylish.dao.UserDAO;
 import com.everstylish.dao.UserDAOImpl;
 
 @Configuration
-@ComponentScan("com.everstylish.model")
+@ComponentScan("com.everstylish")
 @EnableTransactionManagement
 @Component
 public class DataBaseConfig {
 	
 	//bean is used
 	@Bean
-	public DataSource getDataSource()
+	public DataSource getH2DataSource()
 	{
 		
 		DriverManagerDataSource dataSource =new DriverManagerDataSource();
@@ -73,5 +79,27 @@ public UserDAO getUserDAO(SessionFactory sessionFactory) {
     return new UserDAOImpl(sessionFactory);
 }
 
+@Autowired
+@Bean(name = "productDAO")
+public ProductDAO getProductDao(SessionFactory sessionFactory) {
+    return new ProductDAOImpl();
+}
+
+
+@Autowired
+@Bean(name="categoryDAO")
+public CategoryDAO getCategory(SessionFactory sessionFactory)
+{
+	return new CategoryDAOImpl(sessionFactory);
+	
+}
+
+@Autowired
+@Bean(name="supplierDAO")
+public SupplierDAO getSupplier(SessionFactory sessionFactory)
+{
+	return new SupplierDAOImpl();
+	
+}
 
 }

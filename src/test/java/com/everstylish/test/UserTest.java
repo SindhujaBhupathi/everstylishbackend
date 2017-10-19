@@ -1,5 +1,6 @@
 package com.everstylish.test;
 
-public @interface BeforeClass {
+
+public class UserTest {
 
 }

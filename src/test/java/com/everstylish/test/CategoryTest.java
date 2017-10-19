@@ -2,9 +2,16 @@ package com.everstylish.test;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.everstylish.dao.CategoryDAO;
 import com.everstylish.model.Category;
-import static org.junit.Assert.assertTrue; 
+
+import static org.junit.Assert.assertTrue;
+
+
+
 public class CategoryTest 
 {
     static CategoryDAO categoryDAO;
@@ -21,14 +28,27 @@ public class CategoryTest
          
         categoryDAO=(CategoryDAO)configApplnContext.getBean("categoryDAO");
     }
-    
+    @Ignore
+    @Test
     public void addCategoryTest()
     {
         Category category=new Category();
-        category.setCatId(103);
+        category.setCatId(104);
         category.setCatName("Desktop");
         category.setCatDesc("all kinds of desktops ");
         assertTrue(categoryDAO.addCategory(category));
     }
+    @Ignore
+    @Test
+    public void updateCategoryTest()
+	{
+		Category category=new Category();
+		category.setCatId(103);
+		category.setCatName("rings");
+		category.setCatDesc("The Indian climatic life.");
+		
+		assertTrue(categoryDAO.updateCategory(category));
+	}
    
+    
 }

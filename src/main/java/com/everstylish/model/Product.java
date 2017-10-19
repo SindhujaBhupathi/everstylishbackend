@@ -2,6 +2,8 @@ package com.everstylish.model;
 
 import javax.persistence.*;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table
 public class Product 
@@ -12,8 +14,15 @@ public class Product
      
     String productName,productDesc;
     int stock,price,catId,supplierId;
-     
-    public int getProductId() {
+    @Transient 
+    MultipartFile pimage;
+    public MultipartFile getPimage() {
+		return pimage;
+	}
+	public void setPimage(MultipartFile pimage) {
+		this.pimage = pimage;
+	}
+	public int getProductId() {
         return productId;
     }
     public void setProductId(int productId) {

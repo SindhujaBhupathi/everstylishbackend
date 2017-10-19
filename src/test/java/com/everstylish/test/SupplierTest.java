@@ -7,15 +7,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.everstylish.dao.SupplierDAO;
-import com.everstylish.model.Supplier;
-
-
-
+import com.everstylish.dao.CategoryDAO;
+import com.everstylish.model.Category;
 
 public class SupplierTest {
-
-	static SupplierDAO supplierDAO;
+	  static CategoryDAO categoryDAO;
 	     
 	    @BeforeClass
 	    public static void initialize()
@@ -25,21 +21,28 @@ public class SupplierTest {
 	        configApplnContext.scan("com.everstylish");
 	        configApplnContext.refresh();
 	         
-	        //SessionFactory sessionFactory=(SessionFactory)configApplnContext.getBean("DBConfig.class");
+	        //SessionFactory sessionFactory=(SessionFactory)configApplnContext.getBean("DataBaseConfig.class");
 	         
-	        supplierDAO=(SupplierDAO)configApplnContext.getBean("supplierDAO");
+	        categoryDAO=(CategoryDAO)configApplnContext.getBean("categoryDAO");
 	    }
-	     
-	    @Ignore
 	    @Test
-	    public void addSupplierTest()
+	    public void addCategoryTest()
 	    {
-	    	Supplier supplier=new Supplier();
-	        supplier.setSupId(1002);
-	        supplier.setSupName("JMShirt");
-	        supplier.setSupDesc("John Miller Shirt");
-	         
-	        assertTrue(supplierDAO.addSupplier(supplier));
+	        Category category=new Category();
+	        category.setCatId(104);
+	        category.setCatName("Desktop");
+	        category.setCatDesc("all kinds of desktops ");
+	        assertTrue(categoryDAO.addCategory(category));
 	    }
-	     
+	    @Ignore
+	    public void updateCategoryTest()
+		{
+			Category category=new Category();
+			category.setCatId(103);
+			category.setCatName("rings");
+			category.setCatDesc("The Indian climatic life.");
+			
+			assertTrue(categoryDAO.updateCategory(category));
+		}
 }
+

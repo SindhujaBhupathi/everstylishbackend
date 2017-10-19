@@ -2,14 +2,18 @@ package com.everstylish.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.everstylish.model.Category;
 
 @SuppressWarnings("deprecation")
+@Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO {
 	
 	@Autowired
@@ -20,22 +24,26 @@ public class CategoryDAOImpl implements CategoryDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
 	public boolean addCategory(Category category) {
-		// TODO Auto-generated method stub
+		
 		 try
 	        {
+			 
 	        Session session=sessionFactory.getCurrentSession();
 	        session.save(category);
+	        
 	        return true;
 	        }
 	        catch(Exception e)
 	        {
+	        	System.out.println(e.getMessage());
 	        return false;
 	        }
 	
 	}
 
-	
+
 	public List<Category> retrieveCategory() {
 		// TODO Auto-generated method stub
 		 Session session=sessionFactory.openSession();
@@ -79,24 +87,20 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return null;
 	
 	}
-
+	@Transactional
 	public boolean updateCategory(Category category) {
-		// TODO Auto-generated method stub
+		try
+		{
+		sessionFactory.getCurrentSession().saveOrUpdate(category);
+		return true;
+		}
+		catch(Exception e)
+		{
+		System.out.println("Exception Arised:"+e);
 		return false;
-	}
-
-	public boolean saveCategory(Category category) {
-		// TODO Auto-generated method stub
-		 sessionFactory.getCurrentSession().saveOrUpdate(category);
-			
-			
-			
-		 return true;
+		}
 		
 	}
 
-	public boolean editCategory(Category category) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }

@@ -3,13 +3,17 @@ import static org.junit.Assert.*;
 
 
 
+
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.everstylish.dao.ProductDAO;
 import com.everstylish.model.Product;
+
+@Ignore
 public class ProductTest {
 	private static ProductDAO productDAO;
 	

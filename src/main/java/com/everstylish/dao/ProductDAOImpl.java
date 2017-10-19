@@ -11,16 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.everstylish.model.Product;
 
-import com.everstylish.dao.ProductDAO;
-@Repository("productDao")
+
+@SuppressWarnings("deprecation")
+@Repository("ProductDAO")
 	public class ProductDAOImpl implements ProductDAO
 	{
 		@Autowired
 	    SessionFactory sessionFactory;
 
-		 @Transactional
+		@Transactional
 		public boolean addProduct(Product product) {
-			// TODO Auto-generated method stub
 			 try
 		      {
 		      sessionFactory.getCurrentSession().save(product);
@@ -30,22 +30,9 @@ import com.everstylish.dao.ProductDAO;
 		      {
 		      return false;
 		      }
-		      
 		}
-        public List<Product> retrieveProducts() {
-			// TODO Auto-generated method stub
-        	Session session=sessionFactory.openSession();
-        	@SuppressWarnings("rawtypes")
-			Query query = session.createQuery("from Product");
-        	@SuppressWarnings("unchecked")
-			List<Product> listProducts = query.list();
-        	session.close();
-			return listProducts;
-		}
-
 		public boolean deleteProduct(Product product) {
-			// TODO Auto-generated method stub
-			 try
+			try
 		     {
 		     sessionFactory.getCurrentSession().delete(product);
 		     return true;
@@ -54,20 +41,15 @@ import com.everstylish.dao.ProductDAO;
 		     {
 		     System.out.println("Exception Arised:"+e);  
 			return false;
-		     }
+		     }	
 		}
-
 		public Product getProduct(int productId) {
-			// TODO Auto-generated method stub
 			 Session session=sessionFactory.openSession();
 			 Product product=(Product)session.get(Product.class,productId);
 		     session.close();
 		     return product;
-			
 		}
-
 		public boolean updateProduct(Product product) {
-			// TODO Auto-generated method stub
 			try
 		     {
 		     sessionFactory.getCurrentSession().saveOrUpdate(product);
@@ -77,10 +59,12 @@ import com.everstylish.dao.ProductDAO;
 		     {
 		     System.out.println("Exception Arised:"+e);
 		     return false;
-			
 		}
 		
-		
 		}
-		
-}
+		public List<Product> retrieveProducts() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	
+	}
