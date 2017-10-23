@@ -29,12 +29,12 @@ public class ProductTest {
 		productDAO=(ProductDAO)configAppinContext.getBean("productDAO");
 
 	}
-	@Transactional
+	
 	@Test
 	public void addProductTest()
 	{
 		 Product product= new Product();
-		 product.setProductId(1001);
+		 product.setProductId(1002);
 		 product.setProductName("sa");
 		 product.setProductDesc("this");
 		 product.setPrice(2000);

@@ -1,12 +1,15 @@
 package com.everstylish.model;
 
 import javax.persistence.*;
+
+import org.springframework.stereotype.Component;
  
 @Entity
-@Table
+@Component
 public class Category 
 {
     @Id
+    @GeneratedValue
     int catId;
     String catName,catDesc;
     public int getCatId() {

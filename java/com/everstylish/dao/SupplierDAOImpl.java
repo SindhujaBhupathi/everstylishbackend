@@ -7,15 +7,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.everstylish.model.Supplier;
 
 @SuppressWarnings("deprecation")
-@Repository("SupplierDAO")
+@Repository("supplierDAO")
 public class SupplierDAOImpl implements SupplierDAO {
 	@Autowired
 	SessionFactory sessionFactory;
-	
+	@Transactional
 	public boolean addSupplier(Supplier supplier) {
 		 try
 	        {
@@ -40,7 +41,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 		return listSupplier;
 		
 	}
-
+@Transactional
 	public boolean deleteSupplier(Supplier supplier) {
 		try
 		{
@@ -62,7 +63,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 		session.close();
 		return Supplier;
 	}
-
+	
 	public boolean updateSupplier(Supplier supplier) {
 		
 		try

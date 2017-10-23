@@ -25,13 +25,13 @@ import com.everstylish.dao.UserDAO;
 import com.everstylish.dao.UserDAOImpl;
 
 @Configuration
-@ComponentScan("com.everstylish")
+@ComponentScan("com.everstylish.*")
 @EnableTransactionManagement
 @Component
 public class DataBaseConfig {
 	
 	//bean is used
-	@Bean
+
 	public DataSource getH2DataSource()
 	{
 		
@@ -56,8 +56,8 @@ public class DataBaseConfig {
 
 	@Autowired
 	@Bean(name = "sessionFactory")
-	public SessionFactory getSessionFactory(DataSource dataSource) {
-		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+	public SessionFactory getSessionFactory() {
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.scanPackages("com.everstylish");
 		System.out.println("Session");
@@ -73,6 +73,7 @@ public class DataBaseConfig {
 		System.out.println("Transaction");
 		return transactionManager;
 	}
+	
 @Autowired
 @Bean(name = "userDAO")
 public UserDAO getUserDAO(SessionFactory sessionFactory) {

@@ -13,7 +13,7 @@ import com.everstylish.model.Product;
 
 
 @SuppressWarnings("deprecation")
-@Repository("ProductDAO")
+@Repository("productDAO")
 	public class ProductDAOImpl implements ProductDAO
 	{
 		@Autowired

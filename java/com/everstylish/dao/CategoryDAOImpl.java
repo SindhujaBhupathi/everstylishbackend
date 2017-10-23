@@ -55,22 +55,20 @@ public class CategoryDAOImpl implements CategoryDAO {
 	        return listCategory;
 		
 	}
-
-	public boolean deleteCategory(Category category) {
-		// TODO Auto-generated method stub
-		 try
-	        {
-	        Session session=sessionFactory.getCurrentSession();
-	        session.delete(category);
-	        return true;
-	        }
-	        catch(Exception e)
-	        {
-	        System.out.println("Exception Arised:"+e);  
-	        return false;
-	        }
+	@Transactional
+	public boolean deleteCategory(int catId) {
+		Session session = sessionFactory.getCurrentSession();
+		Object peristanceInstance = session.load(Category.class, catId);
+		
+		if(peristanceInstance != null){
+			session.delete(peristanceInstance);
+			System.out.println("Category deleted successfully");
+		}
+		
+		return true;
 	}
-
+	
+	
 	public Category getCategory(int catId) {
 		// TODO Auto-generated method stub
 		String hql = "from"+" Category"+" where id=" + catId;
@@ -88,19 +86,19 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	}
 	@Transactional
-	public boolean updateCategory(Category category) {
-		try
+	public boolean updateCategory(int catId){
 		{
-		sessionFactory.getCurrentSession().saveOrUpdate(category);
-		return true;
+			try
+			{
+			sessionFactory.getCurrentSession().saveOrUpdate(catId);
+			return true;
+			}
+			catch(Exception e)
+			{
+			System.out.println("Exception Arised:"+e);
+			return false;
+			}
 		}
-		catch(Exception e)
-		{
-		System.out.println("Exception Arised:"+e);
-		return false;
-		}
-		
 	}
-
 	
 }
