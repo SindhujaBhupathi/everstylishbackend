@@ -99,7 +99,7 @@ public CategoryDAO getCategory(SessionFactory sessionFactory)
 @Bean(name="supplierDAO")
 public SupplierDAO getSupplier(SessionFactory sessionFactory)
 {
-	return new SupplierDAOImpl();
+	return new SupplierDAOImpl(sessionFactory);
 	
 }
 

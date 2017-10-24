@@ -9,6 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
+import java.util.List;
+
+
+import org.hibernate.Transaction;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.hibernate.Transaction;
 import com.everstylish.model.Product;
 
 
@@ -61,10 +73,14 @@ import com.everstylish.model.Product;
 		     return false;
 		}
 		
-		}
+	
+	}
 		public List<Product> retrieveProducts() {
 			// TODO Auto-generated method stub
 			return null;
 		}
-	
-	}
+		public boolean deleteProduct(int productId) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+}

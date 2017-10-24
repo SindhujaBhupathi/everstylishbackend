@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+
+
 public class Supplier {
+	
 	@Id
     int supId;
      

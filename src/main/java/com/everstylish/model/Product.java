@@ -8,8 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Component
 public class Product 
-{
-    @Id
+{ @Id
     @GeneratedValue
     int productId;
      
@@ -64,7 +63,7 @@ public class Product
     }
     public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
-    }
+	}
      
      
      

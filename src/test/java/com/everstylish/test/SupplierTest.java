@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.everstylish.dao.SupplierDAO;
@@ -14,8 +15,10 @@ import com.everstylish.model.Supplier;
 
 @Ignore
 public class SupplierTest {
-	  static SupplierDAO supplierDAO;
-	     
+	
+	@Autowired
+	private static SupplierDAO supplierDAO;
+
 	    @BeforeClass
 	    public static void initialize()
 	    {
@@ -23,9 +26,6 @@ public class SupplierTest {
 			AnnotationConfigApplicationContext configApplnContext=new AnnotationConfigApplicationContext();
 	        configApplnContext.scan("com.everstylish");
 	        configApplnContext.refresh();
-	         
-	        //SessionFactory sessionFactory=(SessionFactory)configApplnContext.getBean("DataBaseConfig.class");
-	         
 	        supplierDAO=(SupplierDAO)configApplnContext.getBean("supplierDAO");
 	    }
 	    
@@ -33,8 +33,8 @@ public class SupplierTest {
 	    public void addSupplierTest()
 	    {
 	        Supplier supplier=new Supplier();
-	        supplier.setSupId(653);
-	        supplier.setSupName("city jewelery");
+	        supplier.setSupId(24);
+	        supplier.setSupName("cities jewelery");
 	        supplier.setSupDesc("all kinds of jewelery are available ");
 	        assertTrue(supplierDAO.addSupplier(supplier));
 	    }
@@ -52,11 +52,11 @@ public class SupplierTest {
 	    
 	    @Ignore
 		@Test
-		public void deleteSupplierTest()
+		public void deleteSupplierTest(int supId)
 		{
 			Supplier Supplier=new Supplier();
 			Supplier.setSupId(1002);
-			assertTrue(supplierDAO.deleteSupplier(Supplier));
+			assertTrue(supplierDAO.deleteSupplier(supId));
 		}
 		@Ignore
 		@Test
@@ -66,7 +66,7 @@ public class SupplierTest {
 			assertNotNull("Problem in Retriving ",listSupplier);
 			this.show(listSupplier);
 		}
-		
+		@Ignore
 		public void show(List<Supplier> listSupplier)
 		{
 			for(Supplier Supplier:listSupplier)

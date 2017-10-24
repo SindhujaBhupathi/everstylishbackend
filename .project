@@ -3,6 +3,7 @@
 	<name>everstylishbackend</name>
 	<comment></comment>
 	<projects>
+		<project>everstylish</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

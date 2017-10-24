@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,8 @@ import com.everstylish.model.Product;
 
 @Ignore
 public class ProductTest {
+
+	@Autowired
 	private static ProductDAO productDAO;
 	
 	@BeforeClass
@@ -23,19 +26,18 @@ public class ProductTest {
 		
 		@SuppressWarnings("resource")
 		AnnotationConfigApplicationContext configAppinContext=new AnnotationConfigApplicationContext();
-		configAppinContext.scan("com.");
+		configAppinContext.scan("com.everstylish");
 		configAppinContext.refresh();
-		//SessionFactory sessionFactory=(Conf.getBean(requiredType, args))
+		
 		productDAO=(ProductDAO)configAppinContext.getBean("productDAO");
-
-	}
 	
+	}
 	@Test
 	public void addProductTest()
 	{
 		 Product product= new Product();
-		 product.setProductId(1002);
-		 product.setProductName("sa");
+		 product.setProductId(1036);
+		 product.setProductName("watch");
 		 product.setProductDesc("this");
 		 product.setPrice(2000);
 		 product.setStock(25);
