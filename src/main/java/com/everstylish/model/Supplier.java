@@ -6,26 +6,20 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-
-
 public class Supplier {
 	
 	@Id
+	@GeneratedValue
     int supId;
-     
     String supName,supDesc;
- 
-    public void setSupId(int supId) {
-        this.supId = supId;
-    }
- 
-    
-    
-    public int getSupId() {
+
+  public int getSupId() {
         return supId;
     }
  
-    
+    public void setSupId(int supId) {
+		this.supId = supId;
+    }
     public String getSupName() {
         return supName;
     }

@@ -1,23 +1,15 @@
 package com.everstylish.dao;
 
-import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.Query;
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.everstylish.model.Supplier;
 
 @SuppressWarnings("deprecation")
@@ -25,7 +17,7 @@ import com.everstylish.model.Supplier;
 public class SupplierDAOImpl implements SupplierDAO {
 	
 	@Autowired
-	private SessionFactory sessionFactory;
+	SessionFactory sessionFactory;
 	@Autowired
 	private SupplierDAO supplierDAO;
 	
@@ -35,23 +27,22 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 
-	
-	
 	@Transactional
 	public boolean addSupplier(Supplier supplier) {
 		 try
 	        {
 	        Session session=sessionFactory.getCurrentSession();
-	        session.save(supplier);
+	        session.saveOrUpdate(supplier);
 	        return true;
 	        }
 	        catch(Exception e)
-	        {e.printStackTrace();
+	        {
+	        	System.out.println(e.getMessage());
 	        return false;
 	        }
 		
 	}
-
+	@Transactional
 	public List<Supplier> retrieveSupplier() {
 		Session session=sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
@@ -63,30 +54,29 @@ public class SupplierDAOImpl implements SupplierDAO {
 		
 	}
 @Transactional
-	public boolean deleteSupplier(int supId) {
-		try
-		{
-		Session session=sessionFactory.getCurrentSession();
-		session.delete(supId);
-		return true;
-		}
-		catch(Exception e)
-		{
-		System.out.println("Exception Arised:"+e);	
-		return false;
-		}
+	public Supplier deleteSupplier(int supId) {
+	Supplier SupplierToDelete = new Supplier();
+	SupplierToDelete.setSupId(supId);
+	sessionFactory.getCurrentSession().delete(SupplierToDelete);
+	return SupplierToDelete;
 			}
-
+@Transactional
 	public Supplier getSupplier(int supId) {
+		String hql = "from"+" Supplier"+" where id=" + supId;
+		@SuppressWarnings("rawtypes")
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		
-		Session session=sessionFactory.openSession();
-		Supplier Supplier=(Supplier)session.get(Supplier.class,supId);
-		session.close();
-		return Supplier;
+		@SuppressWarnings("unchecked")
+		List<Supplier> listSupplier = (List<Supplier>) query.list();
+		
+		if (listSupplier != null && !listSupplier.isEmpty()) {
+			return listSupplier.get(0);
+		}
+		
+	
+		return null;
 	}
-	
-	
-
+@Transactional
 	public boolean updateSupplier(Supplier supplier) {
 
 		try

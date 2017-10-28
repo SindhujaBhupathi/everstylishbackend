@@ -5,9 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,8 +21,8 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 
-@SuppressWarnings("unused")
 @Ignore
+
 public class CategoryTest 
 {
 	@Autowired
@@ -42,7 +40,7 @@ public class CategoryTest
          
         categoryDAO=(CategoryDAO)configApplnContext.getBean("categoryDAO");
     }
-   // @Ignore
+    @Ignore
     @Test
     public void addCategoryTest()
     {
@@ -57,22 +55,23 @@ public class CategoryTest
     public void updateCategoryTest()
 	{
 		Category category=new Category();
-		category.setCatId(103);
-		category.setCatName("rings");
-		category.setCatDesc("The Indian climatic life.");
+		category.setCatId(138);
+		category.setCatName("bracelet");
+		category.setCatDesc("all kinds");
 		
 		assertTrue(categoryDAO.updateCategory(category));
 	}
+    
    
-    @Ignore
-	@Test
-	public void deleteCategoryTest(int catId)
+   
+/*	@Test
+	public void deleteCategoryTest()
 	{
 		Category category=new Category();
 		category.setCatId(1002);
-		assertTrue(categoryDAO.deleteCategory(catId));
+		assertTrue(categoryDAO.deleteCategory(category));
 	}
-	
+	*/
 	@Ignore
 	@Test
 	public void retrieveCategoryTest()
@@ -81,7 +80,7 @@ public class CategoryTest
 		assertNotNull("Problem in Retriving ",listCategory);
 		this.show(listCategory);
 	}
-	
+	@Ignore
 	public void show(List<Category> listCategory)
 	{
 		for(Category category:listCategory)
@@ -96,6 +95,7 @@ public class CategoryTest
 	public void getCategoryTest()
 	{
 		Category category=categoryDAO.getCategory(102);
+		 System.out.println(category.toString());
 		assertNotNull("Problem in Getting:",category);
 		System.out.println("Category ID:"+category.getCatId());
 		System.out.println("Category Name:"+category.getCatName());

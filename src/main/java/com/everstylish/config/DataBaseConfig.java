@@ -32,7 +32,7 @@ public class DataBaseConfig {
 	
 	//bean is used
 
-	public DataSource getH2DataSource()
+	/*public DataSource getH2DataSource()
 	{
 		
 		DriverManagerDataSource dataSource =new DriverManagerDataSource();
@@ -41,8 +41,20 @@ public class DataBaseConfig {
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
 		return dataSource;
-  	}
+  	}*/
 	
+	 @Bean(name = "dataSource")
+		public DataSource getDataSource() {
+			DriverManagerDataSource dataSource = new DriverManagerDataSource();
+			dataSource.setDriverClassName("org.h2.Driver");
+			dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+			dataSource.setUsername("sa");
+			dataSource.setPassword("");
+			System.out.println("Datasource");
+			return dataSource;
+
+		}
+
 
 	private Properties getHibernateProperties() {
 		Properties properties = new Properties();
@@ -54,12 +66,24 @@ public class DataBaseConfig {
 
 	}
 
-	@Autowired
+	/*@Autowired
 	@Bean(name = "sessionFactory")
-	public SessionFactory getSessionFactory() {
-		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
+	public SessionFactory getSessionFactory(DataSource dataSource) {
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource());
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.scanPackages("com.everstylish");
+		System.out.println("Session");
+		
+		return sessionBuilder.buildSessionFactory();
+		
+	}*/
+	
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource) {
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+		sessionBuilder.addProperties(getHibernateProperties());
+		sessionBuilder.scanPackages("com.everstylish.*");
 		System.out.println("Session");
 		
 		return sessionBuilder.buildSessionFactory();
@@ -83,7 +107,7 @@ public UserDAO getUserDAO(SessionFactory sessionFactory) {
 @Autowired
 @Bean(name = "productDAO")
 public ProductDAO getProductDao(SessionFactory sessionFactory) {
-    return new ProductDAOImpl();
+    return new ProductDAOImpl(sessionFactory);
 }
 
 

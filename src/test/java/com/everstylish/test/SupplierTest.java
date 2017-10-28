@@ -13,6 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.everstylish.dao.SupplierDAO;
 import com.everstylish.model.Supplier;
 
+@SuppressWarnings("unused")
 @Ignore
 public class SupplierTest {
 	
@@ -28,14 +29,14 @@ public class SupplierTest {
 	        configApplnContext.refresh();
 	        supplierDAO=(SupplierDAO)configApplnContext.getBean("supplierDAO");
 	    }
-	    
+	    @Ignore
 	    @Test
 	    public void addSupplierTest()
 	    {
 	        Supplier supplier=new Supplier();
-	        supplier.setSupId(24);
-	        supplier.setSupName("cities jewelery");
-	        supplier.setSupDesc("all kinds of jewelery are available ");
+	        supplier.setSupId(265);
+	        supplier.setSupName("jeweleries");
+	        supplier.setSupDesc("all available ");
 	        assertTrue(supplierDAO.addSupplier(supplier));
 	    }
 	    @Ignore
@@ -43,21 +44,21 @@ public class SupplierTest {
 	    public void updateSupplierTest()
 		{
 			Supplier supplier=new Supplier();
-			supplier.setSupId(1001);
-			supplier.setSupName("rings");
+			supplier.setSupId(76);
+			supplier.setSupName("fri");
 			supplier.setSupDesc("The Indian climatic life.");
 			
 			assertTrue(supplierDAO.updateSupplier(supplier));
 		}
 	    
-	    @Ignore
+	  /*  @Ignore
 		@Test
 		public void deleteSupplierTest(int supId)
 		{
 			Supplier Supplier=new Supplier();
 			Supplier.setSupId(1002);
 			assertTrue(supplierDAO.deleteSupplier(supId));
-		}
+		}*/
 		@Ignore
 		@Test
 		public void retrieveSupplierTest()

@@ -1,29 +1,30 @@
 package com.everstylish.model;
 
-import java.io.Serializable;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
 
 @Entity
 @Component
 public class Category 
 {
 	@Id
+	 @GeneratedValue(strategy=GenerationType.AUTO)
 	int catId;
 	String catName,catDesc;
-
-	public int getCatId() {
-		return catId;
-	}
 
 	public void setCatId(int catId) {
 		this.catId = catId;
 	}
+
+	
+	public int getCatId() {
+		return catId;
+	}
+
 
 	public String getCatName() {
 		return catName;
