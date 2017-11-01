@@ -25,7 +25,9 @@ public class ProductDAOImpl implements ProductDAO
 	this.sessionFactory=sessionFactory;
 	}
 
-	@Transactional
+	
+	
+@Transactional
 	public boolean addProduct(Product product) 
 	{
 		 try
@@ -37,6 +39,9 @@ public class ProductDAOImpl implements ProductDAO
 	      {
 	      return false;
 	      }
+		 
+		 
+		 
 	}
 	@Transactional
 	public List<Product> retrieveProduct()
@@ -50,6 +55,9 @@ public class ProductDAOImpl implements ProductDAO
         return listProduct;
 		
 	}
+	
+	
+	
 	@Transactional
 	public boolean deleteProduct(Product product)
 	{
@@ -63,6 +71,8 @@ public class ProductDAOImpl implements ProductDAO
 	     System.out.println("Exception Arised:"+e);  
 	     return false;
 	     }
+		 
+		 
 	}
 	@Transactional
 	public Product getProduct(int productId) 
@@ -80,6 +90,9 @@ public class ProductDAOImpl implements ProductDAO
 
 		return null;
 	}
+	
+	
+	
 	@Transactional
 	public boolean updateProduct(Product product)
 	{
@@ -95,12 +108,16 @@ public class ProductDAOImpl implements ProductDAO
 	     }
 	}
 
+	
+	
 	@Transactional
 	public Product getItem(int productId) 
 	{
 		 Product product=sessionFactory.getCurrentSession().get(Product.class,productId);
 		return product;
 	}
+	
+	
 
 	@Transactional
 	public boolean deleteProduct(int productId) {

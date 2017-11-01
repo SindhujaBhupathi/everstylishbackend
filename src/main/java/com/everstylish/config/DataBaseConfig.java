@@ -15,6 +15,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.everstylish.dao.CartDAO;
+import com.everstylish.dao.CartDAOImpl;
 import com.everstylish.dao.CategoryDAO;
 import com.everstylish.dao.CategoryDAOImpl;
 import com.everstylish.dao.ProductDAO;
@@ -124,6 +126,14 @@ public CategoryDAO getCategory(SessionFactory sessionFactory)
 public SupplierDAO getSupplier(SessionFactory sessionFactory)
 {
 	return new SupplierDAOImpl(sessionFactory);
+	
+}
+
+@Autowired
+@Bean(name="cartDAO")
+public CartDAO getCart(SessionFactory sessionFactory)
+{
+	return new CartDAOImpl(sessionFactory);
 	
 }
 
