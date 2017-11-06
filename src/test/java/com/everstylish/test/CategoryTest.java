@@ -1,24 +1,18 @@
 package com.everstylish.test;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 import com.everstylish.dao.CategoryDAO;
 import com.everstylish.model.Category;
-
-import static org.junit.Assert.*;
-
-import java.util.List;
 
 
 @Ignore

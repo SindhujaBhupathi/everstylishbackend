@@ -15,16 +15,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.everstylish.dao.CartDAO;
-import com.everstylish.dao.CartDAOImpl;
-import com.everstylish.dao.CategoryDAO;
-import com.everstylish.dao.CategoryDAOImpl;
-import com.everstylish.dao.ProductDAO;
-import com.everstylish.dao.ProductDAOImpl;
-import com.everstylish.dao.SupplierDAO;
-import com.everstylish.dao.SupplierDAOImpl;
-import com.everstylish.dao.UserDAO;
-import com.everstylish.dao.UserDAOImpl;
+import com.everstylish.dao.*;
+
 
 @Configuration
 @ComponentScan("com.everstylish")
@@ -137,5 +129,35 @@ public CartDAO getCart(SessionFactory sessionFactory)
 	return new CartDAOImpl(sessionFactory);
 	
 }
+
+@Autowired
+@Bean(name = "addressDAO")
+public AddressDAO getAddressDAO(SessionFactory sessionFactory)
+{
+
+	return new AddressDAOImpl(sessionFactory);
+}
+
+
+
+@Autowired
+@Bean(name = "paymentDAO")
+public PaymentDAO getPayDAO(SessionFactory sessionFactory)
+{
+	return new PaymentDAOImpl(sessionFactory);
+	
+
+}
+
+
+@Autowired
+@Bean(name = "ordersDAO")
+public OrdersDAO getOrdersDAO(SessionFactory sessionFactory)
+{
+	return new OrdersDAOImpl();
+	
+
+}
+
 
 }
