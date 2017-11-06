@@ -24,7 +24,7 @@ public CategoryDAOImpl(SessionFactory sessionFactory) {
 	
 	}
 	
-	@Transactional
+/*	@Transactional
 	public boolean addCategory(Category category) {
 		try
 		{
@@ -37,7 +37,25 @@ public CategoryDAOImpl(SessionFactory sessionFactory) {
 			System.out.println(e.getMessage());
 		return false;
 		}
-	}
+	}*/
+@Transactional
+public boolean addCategory(Category category) {
+	
+	 try
+        {
+		 
+        Session session=sessionFactory.getCurrentSession();
+        session.saveOrUpdate(category);
+        
+        return true;
+        }
+        catch(Exception e)
+        {
+        	System.out.println(e.getMessage());
+        return false;
+        }
+
+}
 	
 	@Transactional
 	public List<Category> retrieveCategory1() {
