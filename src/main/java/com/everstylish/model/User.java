@@ -17,17 +17,6 @@ import org.springframework.stereotype.Component;
 public class User implements Serializable
 {
 public static final long serialVersionUID=1L;
-/*
-@Id
-@GeneratedValue
-private int id;
-private String username;
-private String email;
-private String password;
-private String contact;
-private String address;
-private String role;
-private boolean enabled;*/
 
 
 @Id

@@ -15,8 +15,12 @@ import com.everstylish.model.Product;
 
 
 @SuppressWarnings("deprecation")
+@Repository("productDAO")
 public class ProductDAOImpl implements ProductDAO
 {
+
+
+	
 	@Autowired
     SessionFactory sessionFactory;
 	
@@ -27,7 +31,7 @@ public class ProductDAOImpl implements ProductDAO
 
 	
 	
-@Transactional
+    @Transactional
 	public boolean addProduct(Product product) 
 	{
 		 try
@@ -37,12 +41,13 @@ public class ProductDAOImpl implements ProductDAO
 	      }
 	      catch(Exception e)
 	      {
+	    	 
 	      return false;
 	      }
 		 
-		 
-		 
 	}
+
+
 	@Transactional
 	public List<Product> retrieveProduct()
 	{
@@ -72,8 +77,9 @@ public class ProductDAOImpl implements ProductDAO
 	     return false;
 	     }
 		 
-		 
 	}
+	
+	
 	@Transactional
 	public Product getProduct(int productId) 
 	{
@@ -130,6 +136,13 @@ public class ProductDAOImpl implements ProductDAO
 		}
 		
 		return true;
+	}
+
+
+	@Transactional
+	public List<Product> getAllProducts() {
+		List<Product> product = sessionFactory.getCurrentSession().createQuery("from Product",Product.class).list();
+		return product;
 	}
 
 }
